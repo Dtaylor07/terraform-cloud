@@ -46,7 +46,7 @@ jobs:
     
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v4
-         with:
+      with:
             role-to-assume: ${{ secrets.OIDC_ROLE }}
             role-session-name: MySessionName
 
