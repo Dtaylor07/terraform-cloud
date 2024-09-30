@@ -44,7 +44,8 @@ data "aws_iam_policy_document" "this" {
       test     = "StringLike"
       variable = "token.actions.githubusercontent.com:sub"
       # Strip `repo:` to normalize for cases where users may prepend it
-      values = [for repo in local.github_repositories : "repo:Dtaylor07/${repo}:${upper(var.environment)}"]
+     # values = [for repo in local.github_repositories : "repo:Dtaylor07/${repo}:${upper(var.environment)}"]
+      values = formatlist("repo:Dtaylor07/%s:environment:%s", local.github_repositories, upper(var.environment))
     }
   }
 }
