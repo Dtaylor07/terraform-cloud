@@ -5,9 +5,12 @@ permissions:
   contents: read    # This is required for actions/checkout
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
+    push:
+      branches:
+        - main
+    pull_request:
+      branches:
+        - main
 
 jobs:
   terraform:
