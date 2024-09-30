@@ -41,12 +41,18 @@ jobs:
       run: terraform fmt -check
 
     # Setup Authentication with OIDC 
-    - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v4
-      with:
-            aws-region: us-east-1
-            role-to-assume: ${{ secrets.OIDC_ROLE }}
-            role-session-name: MySessionName
+    # - name: Configure AWS Credentials
+    #   uses: aws-actions/configure-aws-credentials@v4
+    #   with:
+    #         aws-region: us-east-1
+    #         role-to-assume: ${{ secrets.OIDC_ROLE }}
+    #         role-session-name: MySessionName
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+              aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+              aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
