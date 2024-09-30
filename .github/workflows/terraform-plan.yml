@@ -40,7 +40,7 @@ jobs:
     - name: Terraform Format
       run: terraform fmt -check
 
-    Setup Authentication with OIDC 
+   # Setup Authentication with OIDC 
     - name: Configure AWS Credentials
       uses: aws-actions/configure-aws-credentials@v4
       with:
