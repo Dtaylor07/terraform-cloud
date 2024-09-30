@@ -12,7 +12,7 @@ locals {
 
 resource "aws_iam_openid_connect_provider" "this" {
   url             = "https://token.actions.githubusercontent.com"
-  client_id_list  = "sts.amazonaws.com"
+  client_id_list  = ["sts.amazonaws.com"]
   thumbprint_list = ["6938fd4d98bab03faadb97b34396831e3780aea1"]
 }
 
@@ -37,7 +37,7 @@ data "aws_iam_policy_document" "this" {
     condition {
       test     = "ForAllValues:StringEquals"
       variable = "token.actions.githubusercontent.com:aud"
-      values   = [sts.amazonaws.com]
+      values   = ["sts.amazonaws.com"]
     }
 
     condition {
