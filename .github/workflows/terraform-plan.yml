@@ -1,18 +1,19 @@
 name: 'Terraform Plan'
 
+permissions:
+  id-token: write # This is required for requesting the JWT
+  contents: read    # This is required for actions/checkout
+
 on:
   push:
     branches: [ "main" ]
   pull_request:
 
-permissions:
-  contents: read
-
 jobs:
   terraform:
     name: 'Terraform'
     runs-on: ubuntu-latest
-    environment: production
+    environment: PROD
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
@@ -38,12 +39,20 @@ jobs:
     - name: Terraform Format
       run: terraform fmt -check
 
+    # Setup Authentication with OIDC 
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+            aws-region: us-east-1
+            role-to-assume: ${{ secrets.OIDC_ROLE }}
+            role-session-name: MySessionName
+
     # Generates an execution plan for Terraform
     - name: Terraform Plan
-      run: terraform plan -input=false
+      run: terraform plan --var-file=prod.tfvars -input=false
 
       # On push to "main", build or change infrastructure according to Terraform configuration files
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
     - name: Terraform Apply
       if: github.ref == 'refs/heads/"main"' && github.event_name == 'push'
-      run: terraform apply -auto-approve -input=false
+      run: terraform apply -auto-approve -input=false --var-file=prod.tfvars
