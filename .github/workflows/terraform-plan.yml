@@ -1,5 +1,9 @@
 name: 'Terraform Plan'
 
+permissions:
+  id-token: write # This is required for requesting the JWT
+  contents: read    # This is required for actions/checkout
+
 on:
   push:
     branches: [ "main" ]
@@ -37,6 +41,14 @@ jobs:
     # Checks that all Terraform configuration files adhere to a canonical format
     - name: Terraform Format
       run: terraform fmt -check
+
+    # Setup Authentication with OIDC 
+    
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v4
+         with:
+            role-to-assume: ${{ secrets.OIDC_ROLE }}
+            role-session-name: MySessionName
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
