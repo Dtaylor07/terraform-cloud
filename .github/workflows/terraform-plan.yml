@@ -10,6 +10,12 @@ on:
     pull_request:
       branches: [ "main" ]
 
+env:
+  TF_CLOUD_ORGANIZATION: "study-organization"
+  TF_API_TOKEN: "${{ secrets.TF_API_TOKEN }}"
+  TF_WORKSPACE: "terraform-cloud"
+  CONFIG_DIRECTORY: "./"
+
 jobs:
   terraform:
     name: 'Terraform'
