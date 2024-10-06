@@ -29,7 +29,7 @@ resource "aws_iam_role" "test_role" {
         Effect = "Allow"
         Sid    = ""
         Principal = {
-          Service = "terraform.amazonaws.com"
+          AWS = "arn:aws:iam::199660179115:root"
         }
       },
     ]
