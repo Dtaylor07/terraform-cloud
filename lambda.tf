@@ -1,6 +1,6 @@
 data "archive_file" "lambda" {
   type        = "zip"
-  source_file = "lambda.js"
+  source_file = "index.js"
   output_path = "lambda_function_payload.zip"
 }
 
