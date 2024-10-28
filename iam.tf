@@ -7,8 +7,8 @@ resource "aws_iam_policy" "policy" {
 data "aws_iam_policy_document" "tf-cloud-policy" {
   version = "2012-10-17"
   statement {
-    actions   = "*"
-    resources = "*"
+    actions   = ["*"]
+    resources = ["*"]
   }
 }
 
