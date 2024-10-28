@@ -1,8 +1,16 @@
-# resource "aws_iam_policy" "policy" {
-#   name        = "terraform-cloud-policy"
-#   description = "A test policy"
-#   policy      = data.aws_iam_policy_document.tf-cloud-policy.json
-# }
+resource "aws_iam_policy" "policy" {
+  name        = "terraform-cloud-policy"
+  description = "A test policy"
+  policy      = data.aws_iam_policy_document.tf-cloud-policy.json
+}
+
+data "aws_iam_policy_document" "tf-cloud-policy" {
+  version = "2012-10-17"
+  statement {
+    actions   = "*"
+    resources = "*"
+  }
+}
 
 resource "aws_iam_role" "test_role" {
   name = "terraform_cloud_role"
