@@ -1,7 +1,7 @@
 provider "aws" {
   region = "us-east-1"
   assume_role {
-    role_arn     = "arn:aws:iam::199660179115:role/github-oidc-Role"
+    role_arn     = "var.AWS_ROLE_ARN"
     session_name = "TerraformCloudSession"
   }
 }
