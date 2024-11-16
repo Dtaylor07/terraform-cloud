@@ -12,5 +12,6 @@ terraform {
     key     = "security/terraform.tfstate"
     region  = "us-east-1"
     encrypt = true
+    role_arn = "arn:aws:iam::199660179115:role/atlantis-role"
   }
 }
