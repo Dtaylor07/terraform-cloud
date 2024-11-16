@@ -1,5 +1,5 @@
 resource "aws_iam_policy" "policy" {
-  name        = "terraform-cloud-policy1"
+  name        = "terraform-cloud-policy2"
   description = "A test policy"
   policy      = data.aws_iam_policy_document.tf-cloud-policy.json
 }
@@ -13,7 +13,7 @@ data "aws_iam_policy_document" "tf-cloud-policy" {
 }
 
 resource "aws_iam_role" "test_role" {
-  name = "terraform_cloud_role_1"
+  name = "terraform_cloud_role_2"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [
