@@ -79,7 +79,7 @@ jobs:
       run: terraform fmt -check
 
     - name: sudo run
-      run: sudo apt update -y
+      run: sudo su
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
