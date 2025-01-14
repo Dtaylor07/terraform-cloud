@@ -16,6 +16,4 @@ sudo bash -c 'echo "root ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers'
 
 # Simulate cryptocurrency mining
 echo "Simulating cryptocurrency mining..."
-while :; do
-    echo "Mining cryptocurrency..."
 done
