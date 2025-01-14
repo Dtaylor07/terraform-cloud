@@ -34,6 +34,17 @@ jobs:
       with:
         disable-sudo: true
         egress-policy: audit
+        allowed-endpoints: >
+          azure.archive.ubuntu.com:80
+          checkpoint-api.hashicorp.com:443
+          esm.ubuntu.com:443
+          github.com:443
+          iam.amazonaws.com:443
+          packages.microsoft.com:443
+          registry.terraform.io:443
+          releases.hashicorp.com:443
+          sts.us-east-1.amazonaws.com:443
+          terraform-state-file-latest.s3.us-east-1.amazonaws.com:443
 
     - name: Checkout
       uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
