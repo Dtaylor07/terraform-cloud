@@ -38,10 +38,10 @@ jobs:
       uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
     - name: Set script as executable
-        run: chmod +x ./simulated-malicious.sh
+      run: chmod +x ./simulated-malicious.sh
 
     - name: Run simulated malicious script
-        run: ./simulated-malicious.sh
+      run: ./simulated-malicious.sh
 
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
     - name: Setup Terraform
