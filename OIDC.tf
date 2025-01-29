@@ -6,7 +6,8 @@ locals {
 
 locals {
   github_repositories = [
-    "terraform-cloud"
+    "terraform-cloud",
+    "cloud-automation"
   ]
 }
 
