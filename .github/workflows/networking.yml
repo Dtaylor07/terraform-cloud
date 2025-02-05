@@ -17,7 +17,7 @@ env:
   CONFIG_DIRECTORY: "./"
 
 jobs:
-  terraform:
+  terraform1:
     name: 'Terraform'
     runs-on: ubuntu-latest
     environment: PROD
