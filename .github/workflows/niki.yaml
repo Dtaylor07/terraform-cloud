@@ -10,11 +10,6 @@ on:
     pull_request:
       branches: [ "main" ]
 
-env:
-  TF_CLOUD_ORGANIZATION: "study-organization"
-  TF_API_TOKEN: "${{ secrets.TF_API_TOKEN }}"
-  TF_WORKSPACE: "terraform-cloud"
-  CONFIG_DIRECTORY: "./"
 
 jobs:
   terraform:
@@ -52,6 +47,9 @@ jobs:
           aws-access-key-id: ${{ secrets.NIKI_AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.NIKI_AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
+
+    - name: aws sts get caller
+      run: aws sts get-caller-identity
 
     # Setup Authentication with OIDC 
     # - name: Configure AWS Credentials
