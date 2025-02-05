@@ -51,13 +51,13 @@ jobs:
     - name: aws sts get caller
       run: aws sts get-caller-identity
 
-    # Setup Authentication with OIDC 
-    # - name: Configure AWS Credentials
-    #   uses: aws-actions/configure-aws-credentials@e3dd6a429d7300a6a4c196c26e071d42e0343502 # v4.0.2
-    #   with:
-    #       aws-region: us-east-1
-    #       role-to-assume: ${{ secrets.NIKI_OIDC_ROLE }}
-    #       role-session-name: MySessionName
+    #Setup Authentication with OIDC 
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@e3dd6a429d7300a6a4c196c26e071d42e0343502 # v4.0.2
+      with:
+          aws-region: us-east-1
+          role-to-assume: ${{ secrets.NIKI_OIDC_ROLE }}
+          role-session-name: MySessionName
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
