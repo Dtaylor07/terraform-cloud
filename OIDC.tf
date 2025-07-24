@@ -7,8 +7,20 @@ locals {
 locals {
   github_repositories = [
     "terraform-cloud",
-    "cloud-automation"
+    "cloud-"
   ]
+}
+
+locals {
+  oidc_sub_repositories = [
+    for prefix in local.github_repositories :
+    format("repo:Dtaylor07/%s*:environment:%s", prefix, upper(var.environment))
+  ]
+
+  additional_permission = var.environment == "prod" ? [
+    for prefix in local.github_repositories :
+    format("repo:Dtaylor07/%s*:environment:RELEASE", prefix)
+  ] : []
 }
 
 resource "aws_iam_openid_connect_provider" "this" {
@@ -42,11 +54,9 @@ data "aws_iam_policy_document" "this" {
     }
 
     condition {
-      test     = "StringLike"
+      test     = "ForAnyValue:StringLike"
       variable = "token.actions.githubusercontent.com:sub"
-      # Strip `repo:` to normalize for cases where users may prepend it
-      # values = [for repo in local.github_repositories : "repo:Dtaylor07/${repo}:${upper(var.environment)}"]
-      values = formatlist("repo:Dtaylor07/%s:environment:%s", local.github_repositories, upper(var.environment))
+      values   = concat(local.oidc_sub_repositories, local.additional_permission)
     }
   }
 }
