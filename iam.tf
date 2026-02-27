@@ -1,6 +1,6 @@
 resource "aws_iam_policy" "policy" {
   name        = "terraform-cloud-policy"
-  description = "A test policy1"
+  description = "A test policy2"
   policy      = data.aws_iam_policy_document.tf-cloud-policy.json
 }
 
